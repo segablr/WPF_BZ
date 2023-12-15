@@ -1,0 +1,9 @@
+FROM mcr.microsoft.com/windows/servercore:ltsc2022
+
+RUN powershell Start-Process -FilePath "install/SQL2019-SSEI-Expr.exe" -ArgumentList "/quiet", "/qn", "/norestart", "/IAcceptSqlServerLicenseTerms" -Wait
+
+WORKDIR /the/workdir/path
+
+COPY . .
+
+ENTRYPOINT [ "WPF_BZ.exe" ]
